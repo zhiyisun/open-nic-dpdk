@@ -8,13 +8,13 @@ This is one of the three components of the
 This OpenNIC DPDK repo contains a series of patch files and instructions with details for building DPDK with drivers for [OpenNIC](https://github.com/Xilinx/open-nic).  The basic sections are:
 
 1. Install Build Dependencies.
-1. The drivers at [Xilinx QDMA's DPDK driver repo](https://github.com/Xilinx/dma_ip_drivers) need to be patched for OpenNIC using the patch files contained in this repo.
-1. Download DPDK and DPDK pktgen. The DPDK 23.11 distribution needs minor edits to include these drivers.
-1. Build.
-1. Configure proc/cmdline and BIOS if necessary.
-1. Run Vivado to generate the [open-nic-shell](https://github.com/Xilinx/open-nic-shell) configured for two CMAC ports and two PFs for testing these.
-1. Gives examples for writing to the hardware registers in order to set up the test.
-1. Gives examples for binding DPDK to devices and testing this driver by running pktgen for the two PFs.
+2. The drivers at [Xilinx QDMA's DPDK driver repo](https://github.com/Xilinx/dma_ip_drivers) need to be patched for OpenNIC using the patch files contained in this repo.
+3. Download DPDK and DPDK pktgen. The DPDK 23.11 distribution needs minor edits to include these drivers.
+4. Build.
+5. Configure proc/cmdline and BIOS if necessary.
+6. Run Vivado to generate the [open-nic-shell](https://github.com/Xilinx/open-nic-shell) configured for two CMAC ports and two PFs for testing these.
+7. Gives examples for writing to the hardware registers in order to set up the test.
+8. Gives examples for binding DPDK to devices and testing this driver by running pktgen for the two PFs.
 
 The rest of this document contains the step-by-step instructions for each of the sections listed above.  These instructions were written assuming Ubuntu e.g. 18.04 or 20.04.
 
@@ -31,7 +31,7 @@ The rest of this document contains the step-by-step instructions for each of the
     sudo pip3 install meson
     ```    
 
-1.  Install dependencies for building pktgen-dpdk:
+2.  Install dependencies for building pktgen-dpdk:
     ```
     sudo apt install libpcap-dev
     ```
@@ -53,17 +53,17 @@ The rest of this document contains the step-by-step instructions for each of the
     cd ..
     ```
 
-1.  Clone this open-nic-dpdk repo:
+2.  Clone this open-nic-dpdk repo:
     ```
     git clone https://github.com/Xilinx/open-nic-dpdk
     ```
 
-1.  Copy the `*.patch` files contained in this repo into the QDMA driver's directory.
+3.  Copy the `*.patch` files contained in this repo into the QDMA driver's directory.
     ```
     cp open-nic-dpdk/*.patch dma_ip_drivers
     ```
     
-1.  Then apply the OpenNIC patches:
+4.  Then apply the OpenNIC patches:
     ```
     cd dma_ip_drivers
     git apply *.patch
@@ -146,7 +146,7 @@ The rest of this document contains the step-by-step instructions for each of the
 
 1.  Build pktgen-dpdk:
     ```
-    cd pktgen-23.10.0
+    cd pktgen-dpdk-pktgen-23.10.0
     make RTE_SDK=../dpdk-23.11 RTE_TARGET=build
     ```
 
